@@ -418,3 +418,9 @@ with the following
 This code looks at the last active surface, grabs the data model from it and sends it to GenUI for processing.
 
 GenUI is able to understand what to do with it.
+
+
+** Next Steps
+- Make a widget for inputing weather because the components it picks is random and can't be submitted sometimes
+- Setup Dart function for retrieving weather.
+- Figure out another Firebase integration.
