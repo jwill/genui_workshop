@@ -378,7 +378,18 @@ Update =_addMessage= and =sendAndReceive= like in code lab.
 
 GenUI now uses a surface to ask the user for data with fields for the location and date but clicking the Get Forecase button does nothing.
 
-Modify the =_sendAndReceive= function to the following
+Modify the =_sendAndReceive= function to replace this
+#+begin_example dart
+ // Send the string to Firebase AI Logic.
+    final response = await _chatSession.sendMessage(Content.text(text));
+
+    if (response.text?.isNotEmpty ?? false) {
+      // Feed the response back into GenUI's transportation layer
+      _transport.addChunk(response.text!);
+    }
+#+end_example
+
+with the following
 #+begin_example dart
  // Check for an active surface
     var id = _controller.activeSurfaceIds.lastOrNull;
@@ -403,3 +414,7 @@ Modify the =_sendAndReceive= function to the following
     }
 
 #+end_example
+
+This code looks at the last active surface, grabs the data model from it and sends it to GenUI for processing.
+
+GenUI is able to understand what to do with it.
