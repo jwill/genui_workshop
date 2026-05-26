@@ -6,11 +6,10 @@ class TextItem extends ConversationItem {
   TextItem({required this.text, this.isUser = false});
 }
 
-/*class SurfaceItem extends ConversationItem {
+class SurfaceItem extends ConversationItem {
   final String surfaceId;
   SurfaceItem({required this.surfaceId});
-}*/
-
+}
 
 const systemInstruction = '''
   ## PERSONA

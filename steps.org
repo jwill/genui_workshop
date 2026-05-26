@@ -288,4 +288,118 @@ Add the system instruction to =genui_utils.dart=.
 
 Test app
 
-Add the foll
+** Integrate GenUI package
+Add the following to =genui_utils.dart=
+#+BEGIN_EXAMPLE dart
+class SurfaceItem extends ConversationItem {
+  final String surfaceId;
+  SurfaceItem({required this.surfaceId});
+}
+
+#+END_EXAMPLE
+
+In =main.dart=, add a case for the =SurfaceItem= type to the ListView =build= method:
+#+BEGIN_EXAMPLE dart
+Expanded(
+  child: ListView(
+    controller: _scrollController,
+    padding: const EdgeInsets.all(16),
+    children: [
+      for (final item in _items)
+        switch (item) {
+          TextItem() => MessageBubble(
+            text: item.text,
+            isUser: item.isUser,
+          ),
+          // New!
+          SurfaceItem() => Surface(
+            surfaceContext: _controller.contextFor(
+              item.surfaceId,
+            ),
+          ),
+        },
+    ],
+  ),
+),
+#+END_EXAMPLE
+
+
+At the top of lib/main.dart, import the genui library:
+#+begin_example dart
+import 'package:genui/genui.dart' hide TextPart;
+import 'package:genui/genui.dart' as genui;
+#+end_example
+
+
+Add the following lifecycle controllers and adapters to =main.dart=
+#+begin_example dart
+class _MyHomePageState extends State<MyHomePage> {
+  // ... existing members
+  late final ChatSession _chatSession;
+
+  // Add GenUI controllers
+  late final SurfaceController _controller;
+  late final A2uiTransportAdapter _transport;
+  late final Conversation _conversation;
+  late final Catalog catalog;
+#+end_example
+
+Update =_addMessage= and =sendAndReceive= like in code lab.
+
+#+begin_example dart
+  Future<void> _sendAndReceive(ChatMessage msg) async {
+    final buffer = StringBuffer();
+
+    // Reconstruct the message part fragments
+    for (final part in msg.parts) {
+      if (part.isUiInteractionPart) {
+        buffer.write(part.asUiInteractionPart!.interaction);
+      } else if (part is genui.TextPart) {
+        buffer.write(part.text);
+      }
+    }
+
+    if (buffer.isEmpty) {
+      return;
+    }
+
+    final text = buffer.toString();
+
+    // Send the string to Firebase AI Logic.
+    final response = await _chatSession.sendMessage(Content.text(text));
+
+    if (response.text?.isNotEmpty ?? false) {
+      // Feed the response back into GenUI's transportation layer
+      _transport.addChunk(response.text!);
+    }
+  }
+#+end_example
+
+
+GenUI now uses a surface to ask the user for data with fields for the location and date but clicking the Get Forecase button does nothing.
+
+Modify the =_sendAndReceive= function to the following
+#+begin_example dart
+ // Check for an active surface
+    var id = _controller.activeSurfaceIds.lastOrNull;
+
+    // If a surface exists, pull the datamodel from the embedded surface
+    if (id != null) {
+        DataModel model = _controller.store.getDataModel(id)
+        var data = model.getValue(DataPath('/'));
+        userInputData = data;
+    }
+
+    // Send the string to Firebase AI Logic.
+    final response;
+    if (userInputData != null) {
+      response = await _chatSession.sendMessage(Content.text(userInputData.toString()));
+    } else {
+     response = await _chatSession.sendMessage(Content.text(text));
+    }
+    if (response.text?.isNotEmpty ?? false) {
+      // Feed the response back into GenUI's transportation layer
+      _transport.addChunk(response.text!);
+    }
+
+#+end_example

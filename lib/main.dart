@@ -1,9 +1,13 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:genui_workshop/message_bubble.dart';
 import 'package:genui_workshop/genui_utils.dart';
 import 'firebase_options.dart';
+import 'package:genui/genui.dart' hide TextPart;
+import 'package:genui/genui.dart' as genui;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,14 +43,116 @@ class _MyHomePageState extends State<MyHomePage> {
   final _scrollController = ScrollController();
   late final ChatSession _chatSession;
 
+  // Add GenUI controllers
+  late final SurfaceController _controller;
+  late final A2uiTransportAdapter _transport;
+  late final Conversation _conversation;
+  late final Catalog catalog;
+
   @override
   void initState() {
     super.initState();
     final model = FirebaseAI.googleAI().generativeModel(
-      model: 'gemini-3.5-flash',
+      //model: 'gemini-3.5-flash',
+      model: 'gemini-3.1-flash-lite',
     );
     _chatSession = model.startChat();
-    _chatSession.sendMessage(Content.text(systemInstruction));
+
+    // Initialize the GenUI Catalog.
+    // The genui package provides a default set of primitive widgets (like text
+    // and basic buttons) out of the box using this class.
+    catalog = BasicCatalogItems.asCatalog();
+
+    // Create a SurfaceController to manage the state of generated surfaces.
+    _controller = SurfaceController(catalogs: [catalog]);
+
+    // Create a transport adapter that will process messages to and from the
+    // agent, looking for A2UI messages.
+    _transport = A2uiTransportAdapter(onSend: _sendAndReceive);
+
+    // Link the transport and SurfaceController together in a Conversation,
+    // which provides your app a unified API for interacting with the agent.
+    _conversation = Conversation(
+      controller: _controller,
+      transport: _transport,
+    );
+
+    // Listen to GenUI stream events to update the UI
+    _conversation.events.listen((event) {
+      setState(() {
+        switch (event) {
+          case ConversationSurfaceAdded added:
+            _items.add(SurfaceItem(surfaceId: added.surfaceId));
+            _scrollToBottom();
+          case ConversationSurfaceRemoved removed:
+            _items.removeWhere(
+              (item) =>
+                  item is SurfaceItem && item.surfaceId == removed.surfaceId,
+            );
+          case ConversationContentReceived content:
+            _items.add(TextItem(text: content.text, isUser: false));
+            _scrollToBottom();
+          case ConversationError error:
+            debugPrint('GenUI Error: ${error.error}');
+          default:
+        }
+      });
+    });
+
+    // Create the system prompt for the agent, which will include this app's
+    // system instruction as well as the schema for the catalog.
+    final promptBuilder = PromptBuilder.chat(
+      catalog: catalog,
+      systemPromptFragments: [systemInstruction],
+    );
+
+    // Send the prompt into the Conversation, which will subsequently route it
+    // to Firebase using the transport mechanism.
+    _conversation.sendRequest(
+      ChatMessage.system(promptBuilder.systemPromptJoined()),
+    );
+  }
+
+  Future<void> _sendAndReceive(ChatMessage msg) async {
+    final buffer = StringBuffer();
+    Map<String,Object?>? userInputData;
+    // Reconstruct the message part fragments
+    for (final part in msg.parts) {
+
+      if (part.isUiInteractionPart) {
+        buffer.write(part.asUiInteractionPart!.interaction);
+      } else if (part is genui.TextPart) {
+        buffer.write(part.text);
+      }
+    }
+
+    if (buffer.isEmpty) {
+      return;
+    }
+
+    final text = buffer.toString();
+
+    // Check for an active surface
+    var id = _controller.activeSurfaceIds.lastOrNull;
+
+    // If a surface exists, pull the datamodel from the embedded surface
+    if (id != null) {
+        DataModel model = _controller.store.getDataModel(id)
+        var data = model.getValue(DataPath('/'));
+        userInputData = data;
+    }
+
+    // Send the string to Firebase AI Logic.
+    final response;
+    if (userInputData != null) {
+      response = await _chatSession.sendMessage(Content.text(userInputData.toString()));
+    } else {
+     response = await _chatSession.sendMessage(Content.text(text));
+    }
+    if (response.text?.isNotEmpty ?? false) {
+      // Feed the response back into GenUI's transportation layer
+      _transport.addChunk(response.text!);
+    }
   }
 
   void _scrollToBottom() {
@@ -74,6 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
     if (text.trim().isEmpty) {
       return;
     }
+
     _textController.clear();
 
     setState(() {
@@ -82,14 +189,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     _scrollToBottom();
 
-    final response = await _chatSession.sendMessage(Content.text(text));
-
-    if (response.text?.isNotEmpty ?? false) {
-      setState(() {
-        _items.add(TextItem(text: response.text!, isUser: false));
-      });
-      _scrollToBottom();
-    }
+    // Send the user's input through GenUI instead of directly to Firebase.
+    await _conversation.sendRequest(ChatMessage.user(text));
   }
 
   @override
@@ -111,6 +212,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     TextItem() => MessageBubble(
                       text: item.text,
                       isUser: item.isUser,
+                    ),
+                    // New!
+                    SurfaceItem() => Surface(
+                      surfaceContext: _controller.contextFor(item.surfaceId),
                     ),
                   },
               ],
