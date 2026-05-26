@@ -29,3 +29,4 @@ doc/api/
 .flutter-plugins-dependencies
 firebase.json
 lib/firebase_options.dart
+.DS_Store
