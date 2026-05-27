@@ -8,19 +8,31 @@ final simpleWeatherSchema = S.object(
     'date': S.string(description: 'The date to check the weather.'),
   },
 );
-
+//{version: v0.9, action: {name: submit_weather_request, sourceComponentId: submitButton,
+//timestamp: 2026-05-26T22:10:19.087, context: {}, surfaceId: weather_input_surface}}
 final weatherInput = CatalogItem(
   name: 'WeatherInput',
   dataSchema: simpleWeatherSchema,
   widgetBuilder: (itemContext) {
     final json = itemContext.data as Map<String, Object?>;
-    print(json);
-    if (json.isNotEmpty) {
-      final data = SimpleWeatherData.fromJson(json);
-      return WeatherInput(data: data);
-    } else {
-      return WeatherInput(data: SimpleWeatherData.defaultValues());
-    }
+    final data = SimpleWeatherData.fromJson(json);
+    return WeatherInput(
+      data: data,
+      onFetchRequest: (loc, date) async {
+        final JsonMap resolvedContext = await resolveContext(
+          itemContext.dataContext,
+          {'location': loc, 'date': date.toString()},
+        );
+        itemContext.dispatchEvent(
+          UserActionEvent(
+            name: 'submit_weather_request',
+            sourceComponentId: 'submitButton',
+            timestamp: DateTime.now(),
+            context: resolvedContext
+          ),
+        );
+      },
+    );
   },
 );
 
@@ -35,18 +47,27 @@ class SimpleWeatherData {
   }
 
   factory SimpleWeatherData.fromJson(Map<String, Object?> json) {
-    print("trying from json");
-    return SimpleWeatherData(
-      location: json['location'] as String,
-      date: DateTime.parse(json['date'] as String),
-    );
+    if (json.isNotEmpty) {
+      return SimpleWeatherData(
+        location: json['location'] as String,
+        date: DateTime.parse(json['date'] as String),
+      );
+    } else {
+
+    return SimpleWeatherData(location: 'Baltimore', date: DateTime.now());
+    }
   }
 }
 
 class WeatherInput extends StatefulWidget {
   final SimpleWeatherData data;
+  final void Function(String, DateTime) onFetchRequest;
 
-  const WeatherInput({super.key, required this.data});
+  const WeatherInput({
+    super.key,
+    required this.data,
+    required this.onFetchRequest,
+  });
 
   @override
   State<WeatherInput> createState() => _WeatherInputState();
@@ -104,9 +125,7 @@ class _WeatherInputState extends State<WeatherInput> {
         const SizedBox(height: 16.0),
         FilledButton.tonal(
           onPressed: () {
-            print('hi');
-            print(selectedDate);
-            print(_controller.text);
+            widget.onFetchRequest(_controller.text, selectedDate!);
           },
           child: Text('Get Forecast'),
         ),

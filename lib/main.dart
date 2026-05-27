@@ -128,34 +128,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 as Map<String, Object?>;
         var action = actionJson["action"] as Map<String, Object?>;
         var surfaceId = action["surfaceId"] as String;
-
-        if (surfaceId.isNotEmpty) {
+        print(actionJson);
+        print("action Json");
+        userInputData = action;
+        /*if (surfaceId.isNotEmpty) {
           DataModel model = _controller.store.getDataModel(surfaceId);
           var data = model.getValue(DataPath('/'));
           userInputData = data;
-        }
+        }*/
       } else if (part is genui.TextPart) {
         buffer.write(part.text);
       }
     }
 
-    if (buffer.isEmpty) {
-      return;
-    }
-
     final text = buffer.toString();
-    print(text);
 
     // Send the string to Firebase AI Logic.
     final response;
     if (userInputData != null) {
       response = await _chatSession.sendMessage(
-        Content.text(userInputData.toString()),
+        Content.text(userInputData['context'].toString()),
       );
     } else {
       response = await _chatSession.sendMessage(Content.text(text));
     }
-    if (response.text?.isNotEmpty ?? false) {
+    if (response?.text?.isNotEmpty ?? false) {
       // Feed the response back into GenUI's transportation layer
       _transport.addChunk(response.text!);
     }
