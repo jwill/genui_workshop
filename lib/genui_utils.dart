@@ -31,4 +31,8 @@ const systemInstruction = '''
   *   Advise if you are pulling the data from a real source or making it up.
   *   Ask clarifying questions if you need to.
   *   Respond to my suggestions for changes to date or location, if I have any.
-''';
+
+  ## USER INTERFACE
+  * To request the location and date to retreive weather, create an instance of the WeatherInput
+  catalog item.
+  ''';

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:genui_workshop/genui_utils.dart';
 import 'firebase_options.dart';
 import 'package:genui/genui.dart' hide TextPart;
 import 'package:genui/genui.dart' as genui;
+import 'catalog/weather_input.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,7 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // Initialize the GenUI Catalog.
     // The genui package provides a default set of primitive widgets (like text
     // and basic buttons) out of the box using this class.
-    catalog = BasicCatalogItems.asCatalog();
+    //catalog = BasicCatalogItems.asCatalog();
+    catalog = BasicCatalogItems.asCatalog().copyWith(newItems: [weatherInput]);
 
     // Create a SurfaceController to manage the state of generated surfaces.
     _controller = SurfaceController(catalogs: [catalog]);
@@ -115,12 +118,22 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _sendAndReceive(ChatMessage msg) async {
     final buffer = StringBuffer();
-    Map<String,Object?>? userInputData;
+    Map<String, Object?>? userInputData;
     // Reconstruct the message part fragments
     for (final part in msg.parts) {
-
       if (part.isUiInteractionPart) {
-        buffer.write(part.asUiInteractionPart!.interaction);
+        // Process the event
+        var actionJson =
+            jsonDecode(part.asUiInteractionPart!.interaction)
+                as Map<String, Object?>;
+        var action = actionJson["action"] as Map<String, Object?>;
+        var surfaceId = action["surfaceId"] as String;
+
+        if (surfaceId.isNotEmpty) {
+          DataModel model = _controller.store.getDataModel(surfaceId);
+          var data = model.getValue(DataPath('/'));
+          userInputData = data;
+        }
       } else if (part is genui.TextPart) {
         buffer.write(part.text);
       }
@@ -131,23 +144,16 @@ class _MyHomePageState extends State<MyHomePage> {
     }
 
     final text = buffer.toString();
-
-    // Check for an active surface
-    var id = _controller.activeSurfaceIds.lastOrNull;
-
-    // If a surface exists, pull the datamodel from the embedded surface
-    if (id != null) {
-        DataModel model = _controller.store.getDataModel(id)
-        var data = model.getValue(DataPath('/'));
-        userInputData = data;
-    }
+    print(text);
 
     // Send the string to Firebase AI Logic.
     final response;
     if (userInputData != null) {
-      response = await _chatSession.sendMessage(Content.text(userInputData.toString()));
+      response = await _chatSession.sendMessage(
+        Content.text(userInputData.toString()),
+      );
     } else {
-     response = await _chatSession.sendMessage(Content.text(text));
+      response = await _chatSession.sendMessage(Content.text(text));
     }
     if (response.text?.isNotEmpty ?? false) {
       // Feed the response back into GenUI's transportation layer

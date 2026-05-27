@@ -420,7 +420,17 @@ This code looks at the last active surface, grabs the data model from it and sen
 GenUI is able to understand what to do with it.
 
 
-** Next Steps
-- Make a widget for inputing weather because the components it picks is random and can't be submitted sometimes
+** Make weather input widget
+The components it picks is random and can't be submitted sometimes
+
+Create a =catalog= directory. One file per item with the schema included.
+
+Add the following to =catalog/weather_input.dart=
+#+begin_example dart
+
+#+end_example
+
+
+** Next
 - Setup Dart function for retrieving weather.
 - Figure out another Firebase integration.
