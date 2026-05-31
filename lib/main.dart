@@ -131,11 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
         print(actionJson);
         print("action Json");
         userInputData = action;
-        /*if (surfaceId.isNotEmpty) {
-          DataModel model = _controller.store.getDataModel(surfaceId);
-          var data = model.getValue(DataPath('/'));
-          userInputData = data;
-        }*/
       } else if (part is genui.TextPart) {
         buffer.write(part.text);
       }

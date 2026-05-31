@@ -1,0 +1,134 @@
+[debug] [2026-05-30T20:26:29.360Z] ----------------------------------------------------------------------
+[debug] [2026-05-30T20:26:29.363Z] Command:       /usr/local/bin/firebase /Users/jameswilli/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase init functions
+[debug] [2026-05-30T20:26:29.364Z] CLI Version:   15.19.0
+[debug] [2026-05-30T20:26:29.364Z] Platform:      darwin
+[debug] [2026-05-30T20:26:29.364Z] Node Version:  v20.18.2
+[debug] [2026-05-30T20:26:29.364Z] Time:          Sat May 30 2026 13:26:29 GMT-0700 (Pacific Daylight Time)
+[debug] [2026-05-30T20:26:29.364Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-05-30T20:26:29.953Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"flutter"}
+[debug] [2026-05-30T20:26:29.958Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"flutter"}
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/jameswilli/Documents/GitHub/genui_workshop
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-05-30T20:26:29.963Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-30T20:26:29.963Z] > authorizing via signed-in user (james.l.williams@gmail.com)
+[debug] [2026-05-30T20:26:29.965Z] Checked if tokens are valid: true, expires at: 1780175141941
+[debug] [2026-05-30T20:26:29.966Z] Checked if tokens are valid: true, expires at: 1780175141941
+[debug] [2026-05-30T20:26:29.967Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61 [none]
+[debug] [2026-05-30T20:26:30.977Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61 200
+[debug] [2026-05-30T20:26:30.978Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61 {"projectId":"callstest-f6c61","projectNumber":"564429559166","displayName":"5callstest","name":"projects/callstest-f6c61","resources":{"hostingSite":"callstest-f6c61"},"state":"ACTIVE","etag":"1_cd1e31a2-464a-4b04-8658-e9375f940349"}
+[info] i  Using project callstest-f6c61 (5callstest) . 
+[info] 
+=== Functions Setup
+[debug] [2026-05-30T20:26:30.991Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-30T20:26:30.991Z] > authorizing via signed-in user (james.l.williams@gmail.com)
+[debug] [2026-05-30T20:26:30.991Z] [iam] checking project callstest-f6c61 for permissions ["firebase.projects.get"]
+[debug] [2026-05-30T20:26:30.992Z] Checked if tokens are valid: true, expires at: 1780175141941
+[debug] [2026-05-30T20:26:30.992Z] Checked if tokens are valid: true, expires at: 1780175141941
+[debug] [2026-05-30T20:26:30.992Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions [none]
+[debug] [2026-05-30T20:26:30.992Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions  x-goog-user-project=callstest-f6c61
+[debug] [2026-05-30T20:26:30.992Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2026-05-30T20:26:31.591Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions 200
+[debug] [2026-05-30T20:26:31.591Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+Detected existing codebase(s): default
+
+[info] 
+Overwriting codebase default...
+
+[info] ✔  Wrote functions/pubspec.yaml 
+[info] ✔  Wrote functions/.gitignore 
+[info] ✔  Wrote functions/analysis_options.yaml 
+[info] ✔  Wrote functions/bin/server.dart 
+[debug] [2026-05-30T20:26:42.439Z] Error: spawn dart ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:285:19)
+    at onErrorNT (node:internal/child_process:483:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-05-30T20:26:49.265Z] ----------------------------------------------------------------------
+[debug] [2026-05-30T20:26:49.269Z] Command:       /usr/local/bin/firebase /Users/jameswilli/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase init functions
+[debug] [2026-05-30T20:26:49.269Z] CLI Version:   15.19.0
+[debug] [2026-05-30T20:26:49.269Z] Platform:      darwin
+[debug] [2026-05-30T20:26:49.269Z] Node Version:  v20.18.2
+[debug] [2026-05-30T20:26:49.270Z] Time:          Sat May 30 2026 13:26:49 GMT-0700 (Pacific Daylight Time)
+[debug] [2026-05-30T20:26:49.270Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-05-30T20:26:49.859Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"flutter"}
+[debug] [2026-05-30T20:26:49.864Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"flutter"}
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/jameswilli/Documents/GitHub/genui_workshop
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-05-30T20:26:49.869Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-30T20:26:49.869Z] > authorizing via signed-in user (james.l.williams@gmail.com)
+[debug] [2026-05-30T20:26:49.871Z] Checked if tokens are valid: true, expires at: 1780175141941
+[debug] [2026-05-30T20:26:49.872Z] Checked if tokens are valid: true, expires at: 1780175141941
+[debug] [2026-05-30T20:26:49.873Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61 [none]
+[debug] [2026-05-30T20:26:50.548Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61 200
+[debug] [2026-05-30T20:26:50.548Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61 {"projectId":"callstest-f6c61","projectNumber":"564429559166","displayName":"5callstest","name":"projects/callstest-f6c61","resources":{"hostingSite":"callstest-f6c61"},"state":"ACTIVE","etag":"1_cd1e31a2-464a-4b04-8658-e9375f940349"}
+[info] i  Using project callstest-f6c61 (5callstest) . 
+[info] 
+=== Functions Setup
+[debug] [2026-05-30T20:26:50.564Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-05-30T20:26:50.564Z] > authorizing via signed-in user (james.l.williams@gmail.com)
+[debug] [2026-05-30T20:26:50.564Z] [iam] checking project callstest-f6c61 for permissions ["firebase.projects.get"]
+[debug] [2026-05-30T20:26:50.565Z] Checked if tokens are valid: true, expires at: 1780175141941
+[debug] [2026-05-30T20:26:50.565Z] Checked if tokens are valid: true, expires at: 1780175141941
+[debug] [2026-05-30T20:26:50.565Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions [none]
+[debug] [2026-05-30T20:26:50.565Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions  x-goog-user-project=callstest-f6c61
+[debug] [2026-05-30T20:26:50.565Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2026-05-30T20:26:51.365Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions 200
+[debug] [2026-05-30T20:26:51.366Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+Detected existing codebase(s): default
+
+[info] 
+Overwriting codebase default...
+
+[info] i  functions/pubspec.yaml is unchanged 
+[info] i  functions/.gitignore is unchanged 
+[info] i  functions/analysis_options.yaml is unchanged 
+[info] i  functions/bin/server.dart is unchanged 
+[debug] [2026-05-30T20:26:58.509Z] Error: spawn dart ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:285:19)
+    at onErrorNT (node:internal/child_process:483:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+[error] 
+[error] Error: An unexpected error has occurred.

@@ -431,6 +431,8 @@ Add the following to =catalog/weather_input.dart=
 #+end_example
 
 
+Then wire up events as a callback from the catalog input
+
 ** Next
 - Setup Dart function for retrieving weather.
 - Figure out another Firebase integration.
