@@ -1,15 +1,16 @@
 import 'dart:convert';
-import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:genui_workshop/message_bubble.dart';
 import 'package:genui_workshop/genui_utils.dart';
+import 'package:genui_workshop/tool_calls.dart';
 import 'firebase_options.dart';
 import 'package:genui/genui.dart' hide TextPart;
 import 'package:genui/genui.dart' as genui;
 import 'catalog/weather_input.dart';
+import 'package:http/http.dart' as http;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
     final model = FirebaseAI.googleAI().generativeModel(
       //model: 'gemini-3.5-flash',
       model: 'gemini-3.1-flash-lite',
+      // tools that will call cloud functions
+      tools: [
+        Tool.functionDeclarations([fetchWeatherGeocodeTool]),
+      ],
     );
     _chatSession = model.startChat();
 
@@ -128,8 +133,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 as Map<String, Object?>;
         var action = actionJson["action"] as Map<String, Object?>;
         var surfaceId = action["surfaceId"] as String;
-        print(actionJson);
-        print("action Json");
         userInputData = action;
       } else if (part is genui.TextPart) {
         buffer.write(part.text);
@@ -139,10 +142,30 @@ class _MyHomePageState extends State<MyHomePage> {
     final text = buffer.toString();
 
     // Send the string to Firebase AI Logic.
-    final response;
+    var response;
     if (userInputData != null) {
       response = await _chatSession.sendMessage(
         Content.text(userInputData['context'].toString()),
+      );
+
+      final func = response.functionCalls?.first;
+      print(response.functionCalls?.first?.name);
+      print(response.functionCalls?.first?.args);
+      print(response.text);
+
+      // Call the Dart function.
+      // Get the location from the func call
+      final params = func.args;
+      final uri = Uri.parse(
+        fetchWeatherGeocodeUrl + "?location=${params['location']}",
+      );
+      final funcResponse = await http.get(uri);
+      print(funcResponse.body);
+
+      final jsonMap = jsonDecode(funcResponse.body);
+      //_transport.addChunk(funcResponse.body);
+      response = await _chatSession.sendMessage(
+        Content.functionResponse(func.name, jsonMap),
       );
     } else {
       response = await _chatSession.sendMessage(Content.text(text));

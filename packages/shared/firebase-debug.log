@@ -1,0 +1,301 @@
+[debug] [2026-06-01T01:17:24.691Z] ----------------------------------------------------------------------
+[debug] [2026-06-01T01:17:24.695Z] Command:       /usr/local/bin/firebase /Users/jameswilli/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase emulators:start
+[debug] [2026-06-01T01:17:24.696Z] CLI Version:   15.19.0
+[debug] [2026-06-01T01:17:24.696Z] Platform:      darwin
+[debug] [2026-06-01T01:17:24.696Z] Node Version:  v20.18.2
+[debug] [2026-06-01T01:17:24.696Z] Time:          Sun May 31 2026 18:17:24 GMT-0700 (Pacific Daylight Time)
+[debug] [2026-06-01T01:17:24.697Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-01T01:17:24.699Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-06-01T01:17:25.580Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"flutter"}
+[debug] [2026-06-01T01:17:25.586Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-01T01:17:25.587Z] > authorizing via signed-in user (james.l.williams@gmail.com)
+[info] i  emulators: Starting emulators: functions, extensions {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, extensions"}}
+[debug] [2026-06-01T01:17:25.590Z] Checked if tokens are valid: false, expires at: 1780200384475
+[debug] [2026-06-01T01:17:25.591Z] Checked if tokens are valid: false, expires at: 1780200384475
+[debug] [2026-06-01T01:17:25.591Z] > refreshing access token with scopes: []
+[debug] [2026-06-01T01:17:25.592Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-06-01T01:17:25.594Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-06-01T01:17:25.778Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-06-01T01:17:25.779Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-06-01T01:17:25.825Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-06-01T01:17:25.825Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-06-01T01:17:25.836Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61 [none]
+[debug] [2026-06-01T01:17:26.211Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61 200
+[debug] [2026-06-01T01:17:26.211Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/callstest-f6c61 {"projectNumber":"564429559166","projectId":"callstest-f6c61","lifecycleState":"ACTIVE","name":"5callstest","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-02-21T04:13:10.850114Z"}
+[debug] [2026-06-01T01:17:27.117Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-06-01T01:17:27.117Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2026-06-01T01:17:27.123Z] Write emulator hub locator at /var/folders/_x/4s6y1f3s2pb6dnzj2x2f8b3000lpwg/T/hub-callstest-f6c61.json
+[debug] [2026-06-01T01:17:27.128Z] [Extensions] Started Extensions emulator, this is a noop.
+[debug] [2026-06-01T01:17:27.964Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-06-01T01:17:27.965Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-06-01T01:17:27.965Z] [tasks] Cloud Tasks Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2026-06-01T01:17:27.965Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}],"tasks":[{"address":"127.0.0.1","family":"IPv4","port":9499}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: apphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mapphosting, auth, firestore, database, hosting, pubsub, storage, dataconnect\u001b[22m"}}
+[debug] [2026-06-01T01:17:27.978Z] defaultcredentials: writing to file /Users/jameswilli/.config/firebase/james_l.williams_gmail.com_application_default_credentials.json
+[debug] [2026-06-01T01:17:27.980Z] Setting GAC to /Users/jameswilli/.config/firebase/james_l.williams_gmail.com_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/jameswilli/.config/firebase/james_l.williams_gmail.com_application_default_credentials.json"}}
+[debug] [2026-06-01T01:17:27.980Z] Checked if tokens are valid: true, expires at: 1780280244825
+[debug] [2026-06-01T01:17:27.980Z] Checked if tokens are valid: true, expires at: 1780280244825
+[debug] [2026-06-01T01:17:27.980Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61/adminSdkConfig [none]
+[debug] [2026-06-01T01:17:28.617Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61/adminSdkConfig 200
+[debug] [2026-06-01T01:17:28.618Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/callstest-f6c61/adminSdkConfig {"projectId":"callstest-f6c61","storageBucket":"callstest-f6c61.firebasestorage.app"}
+[debug] [2026-06-01T01:17:28.653Z] [Extensions] Connecting Extensions emulator, this is a noop.
+[info] i  functions: Watching "/Users/jameswilli/Documents/GitHub/genui_workshop/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/jameswilli/Documents/GitHub/genui_workshop/functions\" for Cloud Functions..."}}
+[debug] [2026-06-01T01:17:28.656Z] Customer code is not Node
+[debug] [2026-06-01T01:17:28.657Z] Customer code is not Python code.
+[debug] [2026-06-01T01:17:28.657Z] Validating dart source
+[debug] [2026-06-01T01:17:29.059Z] Building dart source
+[info] i  functions: running build_runner... 
+[debug] [2026-06-01T01:17:30.354Z] [build_runner] W These options have been removed and were ignored: --delete-conflicting-outputs
+[debug] [2026-06-01T01:17:30.601Z] [build_runner] 0s firebase_functions:spec_builder on 1 input; $package$
+[debug] [2026-06-01T01:17:30.603Z] [build_runner] 0s firebase_functions:spec_builder on 1 input: 1 skipped
+[debug] [2026-06-01T01:17:30.610Z] [build_runner] Built with build_runner/aot in 0s; wrote 0 outputs.
+[debug] [2026-06-01T01:17:30.626Z] Skipping Dart compilation in emulator mode.
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-06-01T01:17:30.631Z] Found functions.yaml. Got spec: # This file is generated by package:firebase_functions. Do not edit.
+
+specVersion: v1alpha1
+requiredAPIs:
+  - api: cloudfunctions.googleapis.com
+    reason: Required for Cloud Functions
+endpoints:
+  hello-world:
+    platform: gcfv2
+    region:
+      - us-central1
+    maxInstances: 10
+    httpsTrigger: {}
+    baseImageUri: us-central1-docker.pkg.dev/serverless-runtimes/google-24/runtimes/osonly24
+    command:
+      - ./bin/server
+    entryPoint: hello-world
+  get-simple-forecast:
+    platform: gcfv2
+    region:
+      - us-central1
+    maxInstances: 10
+    httpsTrigger: {}
+    baseImageUri: us-central1-docker.pkg.dev/serverless-runtimes/google-24/runtimes/osonly24
+    command:
+      - ./bin/server
+    entryPoint: get-simple-forecast
+  get-extended-forecast:
+    platform: gcfv2
+    region:
+      - us-central1
+    maxInstances: 10
+    httpsTrigger: {}
+    baseImageUri: us-central1-docker.pkg.dev/serverless-runtimes/google-24/runtimes/osonly24
+    command:
+      - ./bin/server
+    entryPoint: get-extended-forecast
+  get-full-forecast:
+    platform: gcfv2
+    region:
+      - us-central1
+    maxInstances: 10
+    httpsTrigger: {}
+    baseImageUri: us-central1-docker.pkg.dev/serverless-runtimes/google-24/runtimes/osonly24
+    command:
+      - ./bin/server
+    entryPoint: get-full-forecast
+
+[info] ✔  functions: Loaded functions definitions from source: hello-world, get-simple-forecast, get-extended-forecast, get-full-forecast. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: hello-world, get-simple-forecast, get-extended-forecast, get-full-forecast."}}
+[info] ✔  functions[us-central1-hello-world]: http function initialized (http://127.0.0.1:5001/callstest-f6c61/us-central1/hello-world). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/callstest-f6c61/us-central1/hello-world)."}}
+[info] ✔  functions[us-central1-get-simple-forecast]: http function initialized (http://127.0.0.1:5001/callstest-f6c61/us-central1/get-simple-forecast). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/callstest-f6c61/us-central1/get-simple-forecast)."}}
+[info] ✔  functions[us-central1-get-extended-forecast]: http function initialized (http://127.0.0.1:5001/callstest-f6c61/us-central1/get-extended-forecast). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/callstest-f6c61/us-central1/get-extended-forecast)."}}
+[info] ✔  functions[us-central1-get-full-forecast]: http function initialized (http://127.0.0.1:5001/callstest-f6c61/us-central1/get-full-forecast). {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mhttp\u001b[22m function initialized (http://127.0.0.1:5001/callstest-f6c61/us-central1/get-full-forecast)."}}
+[debug] [2026-06-01T01:17:30.658Z] Customer code is not Node
+[debug] [2026-06-01T01:17:30.658Z] Customer code is not Python code.
+[info] i  functions: Starting build_runner watch for Dart functions... {"metadata":{"emulator":{"name":"functions"},"message":"Starting build_runner watch for Dart functions..."}}
+[debug] [2026-06-01T01:17:30.659Z] Starting build_runner watch for Dart functions...
+[debug] [2026-06-01T01:17:31.801Z] [build_runner] W These options have been removed and were ignored: --delete-conflicting-outputs
+[debug] [2026-06-01T01:17:32.216Z] [build_runner] 0s firebase_functions:spec_builder on 1 input; $package$
+[debug] [2026-06-01T01:17:32.218Z] [build_runner] 0s firebase_functions:spec_builder on 1 input: 1 skipped
+[debug] [2026-06-01T01:17:32.225Z] [build_runner] Built with build_runner/aot in 0s; wrote 0 outputs.
+[debug] [2026-06-01T01:17:32.225Z] build_runner initial build completed
+[info] ✔  functions: build_runner initial build completed {"metadata":{"emulator":{"name":"functions"},"message":"build_runner initial build completed"}}
+[debug] [2026-06-01T01:17:32.229Z] Could not find VSCode notification endpoint: FetchError: request to http://localhost:40001/vscode/notify failed, reason: . If you are not running the Firebase SQL Connect VSCode extension, this is expected and not an issue.
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+│ i  View Emulator UI at http://127.0.0.1:4000/               │
+└─────────────────────────────────────────────────────────────┘
+
+┌────────────┬────────────────┬──────────────────────────────────┐
+│ Emulator   │ Host:Port      │ View in Emulator UI              │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Functions  │ 127.0.0.1:5001 │ http://127.0.0.1:4000/functions  │
+├────────────┼────────────────┼──────────────────────────────────┤
+│ Extensions │ 127.0.0.1:5001 │ http://127.0.0.1:4000/extensions │
+└────────────┴────────────────┴──────────────────────────────────┘
+  Emulator Hub host: 127.0.0.1 port: 4400
+  Other reserved ports: 4500
+┌─────────────────────────┬───────────────┬─────────────────────┐
+│ Extension Instance Name │ Extension Ref │ View in Emulator UI │
+└─────────────────────────┴───────────────┴─────────────────────┘
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[debug] [2026-06-01T01:19:34.665Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast)-2026-06-01T01:19:34.665Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:19:34.673Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast)-2026-06-01T01:19:34.665Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:19:34.680Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:38:21.872Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:38:21.872Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:38:21.872Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:38:21.872Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:38:21.873Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=Tampa --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:38:21.889Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:38:21.890Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-06-01T01:38:21.902Z] Starting Dart runtime with args: run --no-serve-devtools bin/server.dart on port 8388
+[debug] [2026-06-01T01:38:21.906Z] [worker-pool] addWorker(~dart-shared~) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(~dart-shared~)"}}
+[debug] [2026-06-01T01:38:21.907Z] [worker-pool] Adding worker with key us-central1-get-simple-forecast, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-get-simple-forecast, total=1"}}
+[debug] [2026-06-01T01:38:24.680Z] [worker-us-central1-get-simple-forecast-9d884b78-e410-4bb5-a0c0-c2f24335d938]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-9d884b78-e410-4bb5-a0c0-c2f24335d938]: IDLE"}}
+[debug] [2026-06-01T01:38:24.680Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:38:24.680Z] [worker-us-central1-get-simple-forecast-9d884b78-e410-4bb5-a0c0-c2f24335d938]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-9d884b78-e410-4bb5-a0c0-c2f24335d938]: BUSY"}}
+[error] i  Your function timed out after ~60s. To configure this timeout, see
+      https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation. {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Your function timed out after ~60s. To configure this timeout, see\n      https://firebase.google.com/docs/functions/manage-functions#set_timeout_and_memory_allocation."}}
+[error] i  Request to function failed: Error: socket hang up {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Request to function failed: Error: socket hang up"}}
+[debug] [2026-06-01T01:39:24.685Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:39:24.700Z] [worker-us-central1-get-simple-forecast-9d884b78-e410-4bb5-a0c0-c2f24335d938]: exited {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-9d884b78-e410-4bb5-a0c0-c2f24335d938]: exited"}}
+[debug] [2026-06-01T01:39:24.701Z] [worker-us-central1-get-simple-forecast-9d884b78-e410-4bb5-a0c0-c2f24335d938]: FINISHED {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-9d884b78-e410-4bb5-a0c0-c2f24335d938]: FINISHED"}}
+[debug] [2026-06-01T01:39:47.842Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:39:47.842Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:39:47.843Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:39:47.842Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:39:47.843Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=Detroit --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:39:47.850Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:39:47.851Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Detroit, mapping to path=/get-simple-forecast/?location=Detroit {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Detroit, mapping to path=/get-simple-forecast/?location=Detroit"}}
+[debug] [2026-06-01T01:39:47.852Z] [worker-pool] Cleaned up workers for ~dart-shared~: 1 --> 0 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Cleaned up workers for ~dart-shared~: 1 --> 0"}}
+[info] i  functions: Loaded environment variables from .env. 
+[debug] [2026-06-01T01:39:47.857Z] Starting Dart runtime with args: run --no-serve-devtools bin/server.dart on port 8772
+[debug] [2026-06-01T01:39:47.861Z] [worker-pool] addWorker(~dart-shared~) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] addWorker(~dart-shared~)"}}
+[debug] [2026-06-01T01:39:47.861Z] [worker-pool] Adding worker with key us-central1-get-simple-forecast, total=1 {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] Adding worker with key us-central1-get-simple-forecast, total=1"}}
+[debug] [2026-06-01T01:39:50.526Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:39:50.526Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:39:50.527Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T01:40:33.472Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 42944.916541ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 42944.916541ms"}}
+[debug] [2026-06-01T01:40:33.474Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:40:33.475Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T01:40:33.475Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T01:40:33.475Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:40:46.031Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast)-2026-06-01T01:40:46.030Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:40:46.031Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast)-2026-06-01T01:40:46.030Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:40:46.033Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:40:49.128Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:40:49.128Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:40:49.129Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:40:49.128Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:40:49.129Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:40:49.135Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:40:49.136Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast, mapping to path=/get-simple-forecast {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast, mapping to path=/get-simple-forecast"}}
+[debug] [2026-06-01T01:40:49.137Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:40:49.138Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T01:40:49.340Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 201.778333ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 201.778333ms"}}
+[debug] [2026-06-01T01:40:49.342Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:40:49.342Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T01:40:49.342Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T01:40:49.343Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:41:10.897Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:41:10.897Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:41:10.898Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:41:10.897Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:41:10.898Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=Tampa --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:41:10.902Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:41:10.903Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa"}}
+[debug] [2026-06-01T01:41:10.903Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:41:10.906Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T01:41:11.103Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 197.228417ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 197.228417ms"}}
+[debug] [2026-06-01T01:41:11.104Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:41:11.104Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T01:41:11.104Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T01:41:11.104Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:43:17.885Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-full-forecast)-2026-06-01T01:43:17.885Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:43:17.886Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-full-forecast)-2026-06-01T01:43:17.885Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:43:17.887Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:43:32.999Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-weather-2026-06-01T01:43:32.999Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:43:33.000Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-weather-2026-06-01T01:43:32.999Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:43:33.001Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:43:56.572Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:43:56.572Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:43:56.573Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:43:56.572Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:43:56.573Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=GwynnOak+Maryland --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:43:56.576Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:43:56.576Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=GwynnOak+Maryland, mapping to path=/get-simple-forecast/?location=GwynnOak+Maryland {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=GwynnOak+Maryland, mapping to path=/get-simple-forecast/?location=GwynnOak+Maryland"}}
+[debug] [2026-06-01T01:43:56.576Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:43:56.576Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T01:43:57.401Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 824.842166ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 824.842166ms"}}
+[debug] [2026-06-01T01:43:57.402Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:43:57.402Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T01:43:57.402Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T01:43:57.403Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:45:55.311Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:45:55.311Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:45:55.311Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:45:55.311Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:45:55.312Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=Baltimore --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:45:55.313Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:45:55.313Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Baltimore, mapping to path=/get-simple-forecast/?location=Baltimore {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Baltimore, mapping to path=/get-simple-forecast/?location=Baltimore"}}
+[debug] [2026-06-01T01:45:55.313Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:45:55.314Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T01:45:56.214Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 900.670875ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 900.670875ms"}}
+[debug] [2026-06-01T01:45:56.215Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:45:56.215Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T01:45:56.215Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T01:45:56.215Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:52:19.954Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:52:19.954Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:52:19.955Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:52:19.954Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:52:19.955Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=Tampa --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:52:19.958Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:52:19.958Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa"}}
+[debug] [2026-06-01T01:52:19.958Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:52:19.959Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T01:52:20.691Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 732.524167ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 732.524167ms"}}
+[debug] [2026-06-01T01:52:20.692Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:52:20.692Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T01:52:20.692Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T01:52:20.693Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:54:22.727Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:54:22.727Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:54:22.727Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:54:22.727Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:54:22.727Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=Tampa --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:54:22.731Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:54:22.731Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa"}}
+[debug] [2026-06-01T01:54:22.732Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:54:22.733Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T01:54:23.463Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 731.23675ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 731.23675ms"}}
+[debug] [2026-06-01T01:54:23.466Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:54:23.466Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T01:54:23.466Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T01:54:23.467Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:56:54.767Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:56:54.767Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T01:56:54.768Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T01:56:54.767Z"],"workRunningCount":1}
+[debug] [2026-06-01T01:56:54.768Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=Detroit --> us-central1-get-simple-forecast
+[debug] [2026-06-01T01:56:54.770Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T01:56:54.771Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Detroit, mapping to path=/get-simple-forecast/?location=Detroit {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Detroit, mapping to path=/get-simple-forecast/?location=Detroit"}}
+[debug] [2026-06-01T01:56:54.771Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T01:56:54.771Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T01:56:55.895Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 1125.021125ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 1125.021125ms"}}
+[debug] [2026-06-01T01:56:55.897Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T01:56:55.897Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T01:56:55.897Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T01:56:55.897Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T02:07:47.563Z] [work-queue] {"queuedWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T02:07:47.563Z"],"queueLength":1,"runningWork":[],"workRunningCount":0}
+[debug] [2026-06-01T02:07:47.564Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":["/callstest-f6c61/us-central1/get-simple-forecast-2026-06-01T02:07:47.563Z"],"workRunningCount":1}
+[debug] [2026-06-01T02:07:47.564Z] Accepted request GET /callstest-f6c61/us-central1/get-simple-forecast?location=Tampa --> us-central1-get-simple-forecast
+[debug] [2026-06-01T02:07:47.570Z] [functions] Runtime ready! Sending request! {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Runtime ready! Sending request!"}}
+[debug] [2026-06-01T02:07:47.571Z] [functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa {"metadata":{"emulator":{"name":"functions"},"message":"[functions] Got req.url=/callstest-f6c61/us-central1/get-simple-forecast?location=Tampa, mapping to path=/get-simple-forecast/?location=Tampa"}}
+[debug] [2026-06-01T02:07:47.571Z] [worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast) {"metadata":{"emulator":{"name":"functions"},"message":"[worker-pool] submitRequest(triggerId=us-central1-get-simple-forecast)"}}
+[info] i  functions: Beginning execution of "us-central1-get-simple-forecast" {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Beginning execution of \"us-central1-get-simple-forecast\""}}
+[debug] [2026-06-01T02:07:47.573Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: BUSY"}}
+[debug] [2026-06-01T02:07:48.310Z] Finishing up request with event=pause {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=pause"}}
+[info] i  functions: Finished "us-central1-get-simple-forecast" in 738.549958ms {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finished \"us-central1-get-simple-forecast\" in 738.549958ms"}}
+[debug] [2026-06-01T02:07:48.314Z] [worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"[worker-us-central1-get-simple-forecast-2f16cc81-e5c7-4ee2-a2ad-22c65753a219]: IDLE"}}
+[debug] [2026-06-01T02:07:48.314Z] Finishing up request with event=finish {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=finish"}}
+[debug] [2026-06-01T02:07:48.314Z] Finishing up request with event=close {"metadata":{"emulator":{"name":"functions"},"function":{"name":"us-central1-get-simple-forecast"},"extension":{},"message":"Finishing up request with event=close"}}
+[debug] [2026-06-01T02:07:48.314Z] [work-queue] {"queuedWork":[],"queueLength":0,"runningWork":[],"workRunningCount":0}

@@ -8,6 +8,8 @@ final simpleWeatherSchema = S.object(
     'date': S.string(description: 'The date to check the weather.'),
   },
 );
+
+// Example raw action
 //{version: v0.9, action: {name: submit_weather_request, sourceComponentId: submitButton,
 //timestamp: 2026-05-26T22:10:19.087, context: {}, surfaceId: weather_input_surface}}
 final weatherInput = CatalogItem(
