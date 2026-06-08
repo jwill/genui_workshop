@@ -3,8 +3,6 @@ import 'package:firebase_ai/firebase_ai.dart';
 final fetchWeatherGeocodeUrl =
     'http://127.0.0.1:5001/callstest-f6c61/us-central1/get-simple-forecast';
 
-final fetchGeocodedWeatherUrl =
-    'http://127.0.0.1:5001/callstest-f6c61/us-central1/get-extended-forecast';
 
 final fetchWeatherGeocodeTool = FunctionDeclaration(
   'fetchWeather',
@@ -19,6 +17,10 @@ final fetchWeatherGeocodeTool = FunctionDeclaration(
     ),
   },
 );
+
+/// Unused
+final fetchGeocodedWeatherUrl =
+    'http://127.0.0.1:5001/callstest-f6c61/us-central1/get-extended-forecast';
 
 final fetchGeocodedWeatherTool = FunctionDeclaration(
   'fetchExtendedWeater',

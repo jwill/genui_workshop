@@ -26,9 +26,6 @@ const systemInstruction = '''
   ### Planning
   *   Ask me for a location to check the weather.
   *   Follow up and ask for a date if not provided.
-  *   Synthesize a list of weather forecasts from the provided information.
-  *   Where available, you will use tool calls to retreive the info (not implemented yet)
-  *   Advise if you are pulling the data from a real source or making it up.
   *   Ask clarifying questions if you need to.
   *   Respond to my suggestions for changes to date or location, if I have any.
 
