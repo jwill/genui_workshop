@@ -132,6 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Map<String, Object?>? userInputData;
     // Reconstruct the message part fragments
     for (final part in msg.parts) {
+      // This is an event initated by the user clicking inside an A2UI widget
       if (part.isUiInteractionPart) {
         // Process the event
         var actionJson =
@@ -153,37 +154,43 @@ class _MyHomePageState extends State<MyHomePage> {
       response = await _chatSession.sendMessage(
         Content.text(userInputData['context'].toString()),
       );
-
+      // Grab the function from the userInputData
       final func = response.functionCalls?.first;
       print(response.functionCalls);
       print(response.functionCalls?.first?.name);
       print(response.functionCalls?.first?.args);
       print(response.text);
+      response = await processFetchWeatherCall(response.functionCalls.first);
 
-      // Call the Dart function.
-      // Get the location from the func call
-      final params = func.args;
-
-      //final uri = Uri.parse(fetchGeocodedWeatherUrl);
-
-      final uri = Uri.parse(
-        fetchWeatherGeocodeUrl + "?location=${params['location']}",
-      );
-      final funcResponse = await http.get(uri);
-      print(funcResponse.body);
-
-      final jsonMap = jsonDecode(funcResponse.body);
-      //_transport.addChunk(funcResponse.body);
-      response = await _chatSession.sendMessage(
-         Content.functionResponse(func.name, jsonMap),
-      );
-    } else {
+      } else {
+      // Usually the first run is to setup the agent
       response = await _chatSession.sendMessage(Content.text(text));
+
+      // Successive runs will likely specify a function call to execute.
+      if (response?.functionCalls.isNotEmpty) {
+        response = await processFetchWeatherCall(response.functionCalls.first);
+      }
     }
     if (response?.text?.isNotEmpty ?? false) {
       // Feed the response back into GenUI's transportation layer
       _transport.addChunk(response.text!);
     }
+  }
+
+  Future<GenerateContentResponse> processFetchWeatherCall(FunctionCall func) async {
+    // Retrieve function args {'location': '...', 'date':'...'}
+    // Date is unused
+    final params = func.args;
+
+    final uri = Uri.parse(
+      fetchWeatherGeocodeUrl + "?location=${params['location']}",
+    );
+    final funcResponse = await http.get(uri);
+
+    final jsonMap = jsonDecode(funcResponse.body);
+    return await _chatSession.sendMessage(
+      Content.functionResponse(func.name, jsonMap),
+    );
   }
 
   void _scrollToBottom() {

@@ -25,12 +25,11 @@ const systemInstruction = '''
   ## PROCESS
   ### Planning
   *   Ask me for a location to check the weather.
-  *   Follow up and ask for a date if not provided.
   *   Ask clarifying questions if you need to.
   *   Respond to my suggestions for changes to date or location, if I have any.
 
   ## USER INTERFACE
-  * To request the location and date to retreive weather, create an instance of the WeatherInput
+  * To request the location to retreive weather, create an instance of the WeatherInput
   catalog item.
   ''';
 
