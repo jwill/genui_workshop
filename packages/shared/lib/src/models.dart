@@ -4,7 +4,7 @@ part 'models.g.dart';
 
 // From wttr.in
 
-@JsonSerializable(ignoreUnannotated: true, explicitToJson: true)
+@JsonSerializable(ignoreUnannotated: true, explicitToJson: true, createJsonSchema: true)
 class Forecast {
   @JsonKey(name: 'nearest_area', fromJson: _extractNearestArea)
   final NearestArea nearestArea;
@@ -18,6 +18,33 @@ class Forecast {
       _$ForecastFromJson(json);
 
   Map<String, dynamic> toJson() => _$ForecastToJson(this);
+
+  static const jsonSchema = _$ForecastJsonSchema;
+}
+
+@JsonSerializable(ignoreUnannotated: true, explicitToJson: true, createJsonSchema: true)
+class ExtendedWeather {
+  @JsonKey(name: 'nearest_area', fromJson: _extractNearestArea)
+  final NearestArea nearestArea;
+
+  @JsonKey(name: 'current_condition', fromJson: _extractCurrentCondition)
+  final CurrentCondition currentCondition;
+
+  @JsonKey(name: 'weather')
+  final List<Weather> weather;
+
+  ExtendedWeather({
+    required this.nearestArea,
+    required this.currentCondition,
+    required this.weather,
+  });
+
+  factory ExtendedWeather.fromJson(Map<String, dynamic> json) =>
+      _$ExtendedWeatherFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ExtendedWeatherToJson(this);
+
+  static const jsonSchema = _$ExtendedWeatherJsonSchema;
 }
 
 NearestArea _extractNearestArea(List<dynamic> list) =>
@@ -26,7 +53,7 @@ NearestArea _extractNearestArea(List<dynamic> list) =>
 CurrentCondition _extractCurrentCondition(List<dynamic> list) =>
     CurrentCondition.fromJson(list.first as Map<String, dynamic>);
 
-@JsonSerializable(ignoreUnannotated: true)
+@JsonSerializable(ignoreUnannotated: true, createJsonSchema: true)
 class NearestArea {
   @JsonKey(fromJson: double.parse)
   double latitude;
@@ -57,12 +84,14 @@ class NearestArea {
       _$NearestAreaFromJson(json);
 
   Map<String, dynamic> toJson() => _$NearestAreaToJson(this);
+
+  static const jsonSchema = _$NearestAreaJsonSchema;
 }
 
 String _extractValueFromList(List<dynamic> list) =>
     (list.first as Map<String, dynamic>)['value'] as String;
 
-@JsonSerializable(ignoreUnannotated: true)
+@JsonSerializable(ignoreUnannotated: true, createJsonSchema: true)
 class CurrentCondition {
   @JsonKey(fromJson: double.parse)
   final double FeelsLikeC;
@@ -155,11 +184,13 @@ class CurrentCondition {
       _$CurrentConditionFromJson(json);
 
   Map<String, dynamic> toJson() => _$CurrentConditionToJson(this);
+
+  static const jsonSchema = _$CurrentConditionJsonSchema;
 }
 
 // From PirateWeather
 
-@JsonSerializable(ignoreUnannotated: true, explicitToJson: true)
+@JsonSerializable(ignoreUnannotated: true, explicitToJson: true, createJsonSchema: true)
 class PirateForecast {
   @JsonKey()
   final double latitude;
@@ -184,20 +215,22 @@ class PirateForecast {
   });
 
   NearestArea get nearestArea => NearestArea(
-        latitude: latitude,
-        longitude: longitude,
-        areaName: flags.nearestCity,
-        region: flags.nearestSubNational,
-        country: flags.nearestCountry,
-      );
+    latitude: latitude,
+    longitude: longitude,
+    areaName: flags.nearestCity,
+    region: flags.nearestSubNational,
+    country: flags.nearestCountry,
+  );
 
   factory PirateForecast.fromJson(Map<String, dynamic> json) =>
       _$PirateForecastFromJson(json);
 
   Map<String, dynamic> toJson() => _$PirateForecastToJson(this);
+
+  static const jsonSchema = _$PirateForecastJsonSchema;
 }
 
-@JsonSerializable(ignoreUnannotated: true, explicitToJson: true)
+@JsonSerializable(ignoreUnannotated: true, explicitToJson: true, createJsonSchema: true)
 class PirateDaily {
   @JsonKey()
   final String summary;
@@ -208,19 +241,17 @@ class PirateDaily {
   @JsonKey()
   final List<PirateDailyData> data;
 
-  PirateDaily({
-    required this.summary,
-    required this.icon,
-    required this.data,
-  });
+  PirateDaily({required this.summary, required this.icon, required this.data});
 
   factory PirateDaily.fromJson(Map<String, dynamic> json) =>
       _$PirateDailyFromJson(json);
 
   Map<String, dynamic> toJson() => _$PirateDailyToJson(this);
+
+  static const jsonSchema = _$PirateDailyJsonSchema;
 }
 
-@JsonSerializable(ignoreUnannotated: true)
+@JsonSerializable(ignoreUnannotated: true, createJsonSchema: true)
 class PirateFlags {
   @JsonKey()
   final String nearestCity;
@@ -241,9 +272,11 @@ class PirateFlags {
       _$PirateFlagsFromJson(json);
 
   Map<String, dynamic> toJson() => _$PirateFlagsToJson(this);
+
+  static const jsonSchema = _$PirateFlagsJsonSchema;
 }
 
-@JsonSerializable(ignoreUnannotated: true)
+@JsonSerializable(ignoreUnannotated: true, createJsonSchema: true)
 class PirateDailyData {
   @JsonKey()
   final int time;
@@ -296,4 +329,80 @@ class PirateDailyData {
       _$PirateDailyDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$PirateDailyDataToJson(this);
+
+  static const jsonSchema = _$PirateDailyDataJsonSchema;
+}
+
+@JsonSerializable(ignoreUnannotated: true, explicitToJson: true, createJsonSchema: true)
+class Weather {
+  @JsonKey()
+  final String date;
+
+  @JsonKey(fromJson: double.parse)
+  final double avgtempC;
+
+  @JsonKey(fromJson: double.parse)
+  final double avgtempF;
+
+  @JsonKey()
+  final List<HourlyCondition> hourly;
+
+  Weather({
+    required this.date,
+    required this.avgtempC,
+    required this.avgtempF,
+    required this.hourly,
+  });
+
+  factory Weather.fromJson(Map<String, dynamic> json) => _$WeatherFromJson(json);
+  Map<String, dynamic> toJson() => _$WeatherToJson(this);
+
+  static const jsonSchema = _$WeatherJsonSchema;
+}
+
+@JsonSerializable(ignoreUnannotated: true, createJsonSchema: true)
+class HourlyCondition {
+  @JsonKey()
+  final String time;
+
+  @JsonKey(fromJson: double.parse)
+  final double tempC;
+
+  @JsonKey(fromJson: double.parse)
+  final double tempF;
+
+  @JsonKey(fromJson: double.parse)
+  final double FeelsLikeC;
+
+  @JsonKey(fromJson: double.parse)
+  final double FeelsLikeF;
+
+  @JsonKey(fromJson: double.parse)
+  final double humidity;
+
+  @JsonKey(fromJson: double.parse)
+  final double windspeedMiles;
+
+  @JsonKey(fromJson: _extractValueFromList)
+  final String weatherDesc;
+
+  @JsonKey(fromJson: _extractValueFromList)
+  final String weatherIconUrl;
+
+  HourlyCondition({
+    required this.time,
+    required this.tempC,
+    required this.tempF,
+    required this.FeelsLikeC,
+    required this.FeelsLikeF,
+    required this.humidity,
+    required this.windspeedMiles,
+    required this.weatherDesc,
+    required this.weatherIconUrl,
+  });
+
+  factory HourlyCondition.fromJson(Map<String, dynamic> json) => _$HourlyConditionFromJson(json);
+  Map<String, dynamic> toJson() => _$HourlyConditionToJson(this);
+
+  static const jsonSchema = _$HourlyConditionJsonSchema;
 }

@@ -30,3 +30,4 @@ doc/api/
 firebase.json
 lib/firebase_options.dart
 .DS_Store
+packages/shared/firebase-debug.log

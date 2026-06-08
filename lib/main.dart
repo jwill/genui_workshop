@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ai/firebase_ai.dart';
+import 'package:genui_workshop/catalog/weather_card.dart';
 import 'package:genui_workshop/message_bubble.dart';
 import 'package:genui_workshop/genui_utils.dart';
 import 'package:genui_workshop/tool_calls.dart';
+import 'package:shared/shared.dart';
 import 'firebase_options.dart';
 import 'package:genui/genui.dart' hide TextPart;
 import 'package:genui/genui.dart' as genui;
@@ -61,6 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // tools that will call cloud functions
       tools: [
         Tool.functionDeclarations([fetchWeatherGeocodeTool]),
+
+        // Tool.functionDeclarations([fetchGeocodedWeatherTool]),
       ],
     );
     _chatSession = model.startChat();
@@ -69,7 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
     // The genui package provides a default set of primitive widgets (like text
     // and basic buttons) out of the box using this class.
     //catalog = BasicCatalogItems.asCatalog();
-    catalog = BasicCatalogItems.asCatalog().copyWith(newItems: [weatherInput]);
+    catalog = BasicCatalogItems.asCatalog().copyWith(
+      newItems: [weatherInput, weatherCard],
+    );
 
     // Create a SurfaceController to manage the state of generated surfaces.
     _controller = SurfaceController(catalogs: [catalog]);
@@ -149,6 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
       );
 
       final func = response.functionCalls?.first;
+      print(response.functionCalls);
       print(response.functionCalls?.first?.name);
       print(response.functionCalls?.first?.args);
       print(response.text);
@@ -156,6 +163,9 @@ class _MyHomePageState extends State<MyHomePage> {
       // Call the Dart function.
       // Get the location from the func call
       final params = func.args;
+
+      //final uri = Uri.parse(fetchGeocodedWeatherUrl);
+
       final uri = Uri.parse(
         fetchWeatherGeocodeUrl + "?location=${params['location']}",
       );
@@ -165,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
       final jsonMap = jsonDecode(funcResponse.body);
       //_transport.addChunk(funcResponse.body);
       response = await _chatSession.sendMessage(
-        Content.functionResponse(func.name, jsonMap),
+         Content.functionResponse(func.name, jsonMap),
       );
     } else {
       response = await _chatSession.sendMessage(Content.text(text));
