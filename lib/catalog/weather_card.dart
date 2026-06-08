@@ -6,6 +6,7 @@ import 'package:json_schema_builder/json_schema_builder.dart';
 import 'dart:io';
 
 import 'dart:convert';
+import 'fake_forecast.dart';
 
 final forecastSchema = S.object(
   properties: {

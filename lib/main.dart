@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ai/firebase_ai.dart';
+import 'package:genui_workshop/catalog/fake_forecast.dart';
 import 'package:genui_workshop/catalog/weather_card.dart';
 import 'package:genui_workshop/message_bubble.dart';
 import 'package:genui_workshop/genui_utils.dart';
 import 'package:genui_workshop/tool_calls.dart';
-import 'package:shared/shared.dart';
 import 'firebase_options.dart';
 import 'package:genui/genui.dart' hide TextPart;
 import 'package:genui/genui.dart' as genui;
@@ -63,8 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // tools that will call cloud functions
       tools: [
         Tool.functionDeclarations([fetchWeatherGeocodeTool]),
-
-        // Tool.functionDeclarations([fetchGeocodedWeatherTool]),
       ],
     );
     _chatSession = model.startChat();
@@ -72,7 +70,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // Initialize the GenUI Catalog.
     // The genui package provides a default set of primitive widgets (like text
     // and basic buttons) out of the box using this class.
-    //catalog = BasicCatalogItems.asCatalog();
     catalog = BasicCatalogItems.asCatalog().copyWith(
       newItems: [weatherInput, weatherCard],
     );
@@ -161,8 +158,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(response.functionCalls?.first?.args);
       print(response.text);
       response = await processFetchWeatherCall(response.functionCalls.first);
-
-      } else {
+    } else {
       // Usually the first run is to setup the agent
       response = await _chatSession.sendMessage(Content.text(text));
 
@@ -177,20 +173,33 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  Future<GenerateContentResponse> processFetchWeatherCall(FunctionCall func) async {
+  Future<GenerateContentResponse> processFetchWeatherCall(
+    FunctionCall func,
+  ) async {
     // Retrieve function args {'location': '...', 'date':'...'}
     // Date is unused
     final params = func.args;
 
-    final uri = Uri.parse(
-      fetchWeatherGeocodeUrl + "?location=${params['location']}",
-    );
-    final funcResponse = await http.get(uri);
+    // Set to true if not using Dart functions or web services for the weather
+    bool simulate = true;
 
-    final jsonMap = jsonDecode(funcResponse.body);
-    return await _chatSession.sendMessage(
-      Content.functionResponse(func.name, jsonMap),
-    );
+    if (simulate) {
+      // Retrieves a static forecast, the model subs in the city name
+      // to make it look legit
+      return await _chatSession.sendMessage(
+        Content.functionResponse(func.name, fakeForecast),
+      );
+    } else {
+      final uri = Uri.parse(
+        fetchWeatherGeocodeUrl + "?location=${params['location']}",
+      );
+      final funcResponse = await http.get(uri);
+
+      final jsonMap = jsonDecode(funcResponse.body);
+      return await _chatSession.sendMessage(
+        Content.functionResponse(func.name, jsonMap),
+      );
+    }
   }
 
   void _scrollToBottom() {
