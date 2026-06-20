@@ -1,12 +1,32 @@
 #+title: Steps
 
-#+BEGIN_SRC shell
-flutter create --empty .
-#+END_SRC
 
-#+BEGIN_SRC shell
+Following needed for cloud shell
+#+BEGIN_EXAMPLE shell
+git config --global --add safe.directory /google/flutter
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE shell
+flutter create --empty .
+#+END_EXAMPLE
+
+Cloud shell doesn't allow =flutter run -d chrome= by default so you need to setup a webserver
+#+BEGIN_EXAMPLE shell
+flutter build web
+python -m http.server
+
+#+END_EXAMPLE
+
+web preview defaults to 8080, change port to 8000
+
+#+BEGIN_EXAMPLE shell
+dart pub global activate flutterfire_cli
+flutterfire configure
+#+END_EXAMPLE
+
+#+BEGIN_EXAMPLE shell
 flutter pub add genui firebase_core firebase_ai json_schema_builder
-#+END_SRC
+#+END_EXAMPLE
 
 Set up a Firebase project section of genui codelab
 
