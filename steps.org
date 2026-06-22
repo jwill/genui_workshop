@@ -829,6 +829,8 @@ var fakeForecast = {
 
 ## Functions
 
+Good area to split to another tutorial.
+
 Create a file named =lib/tool_calls.dart=.
 
 #+begin_example dart
@@ -866,3 +868,5 @@ final model = FirebaseAI.googleAI().generativeModel(
     );
 #+end_example
 
+....
+TBD
