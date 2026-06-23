@@ -1,16 +1,16 @@
 #+title: Steps
 
-## Step 1
+** Step 1
 
 Create a Firebase project at console.firebase.google.com.
 
 Enable Firebase AI logic in the project
 
-## Step 2: Activate Cloud Shell
+** Step 2: Activate Cloud Shell
 
 Cloud Shell space is persistent between projects so make sure you are creating things in proper project directories.
 
-## Step 3: Creating the project
+** Step 3: Creating the project
 
 Cloud shell needs to link to the stored version of Flutter so we need the following command before running `flutter`.
 
@@ -50,7 +50,7 @@ python -m http.server 8080
 
 #+END_EXAMPLE
 
-## Step 4: Setup GenUI scaffolding.
+** Step 4: Setup GenUI scaffolding.
 
 Create =lib/genui_utils.dart=
 #+BEGIN_EXAMPLE dart
@@ -326,7 +326,7 @@ Add the system instruction to =genui_utils.dart=.
 ''';
 #+END_EXAMPLE
 
-Test app. It runs but doesn't really repsond.
+Test app. It runs but doesn't really respond.
 
 ** Integrate GenUI package
 Add the following to =genui_utils.dart=
